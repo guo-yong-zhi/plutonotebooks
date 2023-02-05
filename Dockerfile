@@ -27,8 +27,6 @@ ENV JULIA_PROJECT ${USER_HOME_DIR}
 ENV JULIA_DEPOT_PATH ${USER_HOME_DIR}/.julia
 WORKDIR ${USER_HOME_DIR}
 
-COPY ./runpluto.sh ${USER_HOME_DIR}/runpluto.sh2
-
 RUN julia -e "import Pkg; Pkg.Registry.update(); Pkg.instantiate();"
 
 USER root
