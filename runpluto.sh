@@ -18,4 +18,4 @@ Pluto.run(
     require_secret_for_access=false
 )"
 echo ${command}
-julia --sysimage sys_wordcloud.so --project="/home/jovyan" --optimize=0 -e "${command}"
+julia --sysimage=sys_wordcloud.so --optimize=0 -e "${command}"
