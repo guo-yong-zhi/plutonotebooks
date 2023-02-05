@@ -21,12 +21,13 @@ COPY --chown=${NB_USER}:users ./Manifest.toml ./Manifest.toml
 
 COPY --chown=${NB_USER}:users ./warmup.jl ./warmup.jl
 COPY --chown=${NB_USER}:users ./create_sysimage.jl ./create_sysimage.jl
-COPY --chown=${NB_USER}:users ./runpluto.sh ./runpluto.sh2
 
 ENV USER_HOME_DIR /home/${NB_USER}
 ENV JULIA_PROJECT ${USER_HOME_DIR}
 ENV JULIA_DEPOT_PATH ${USER_HOME_DIR}/.julia
 WORKDIR ${USER_HOME_DIR}
+
+COPY ./runpluto.sh ${USER_HOME_DIR}/runpluto.sh2
 
 RUN julia -e "import Pkg; Pkg.Registry.update(); Pkg.instantiate();"
 
