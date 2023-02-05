@@ -13,9 +13,6 @@ COPY --chown=${NB_USER}:users ./plutoserver ./plutoserver
 COPY --chown=${NB_USER}:users ./environment.yml ./environment.yml
 COPY --chown=${NB_USER}:users ./setup.py ./setup.py
 COPY --chown=${NB_USER}:users ./runpluto.sh ./runpluto.sh
-
-COPY --chown=${NB_USER}:users ./notebooks ./notebooks
-
 COPY --chown=${NB_USER}:users ./warmup.jl ./warmup.jl
 COPY --chown=${NB_USER}:users ./create_sysimage.jl ./create_sysimage.jl
 
