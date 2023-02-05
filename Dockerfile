@@ -1,17 +1,7 @@
 FROM jupyter/base-notebook:latest
 
 USER root
-RUN wget https://github.com/google/fonts/archive/main.tar.gz -O gf.tar.gz && \
-  tar -xf gf.tar.gz && \
-  mkdir -p ~/.fonts/truetype/google-fonts && \
-  find $PWD/fonts-main/ -name "*.ttf" -exec install -m644 {} ~/.fonts/truetype/google-fonts/ \; || return 1 && \
-  rm -f gf.tar.gz && \
-  # Remove the extracted fonts directory
-  rm -rf $PWD/fonts-main && \
-  # Remove the following line if you're installing more applications after this RUN command and you have errors while installing them
-  rm -rf /var/cache/* && \
-  fc-cache -f
-  
+
 RUN wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz && \
     tar -xvzf julia-1.6.0-linux-x86_64.tar.gz && \
     mv julia-1.6.0 /opt/ && \
@@ -31,6 +21,7 @@ COPY --chown=${NB_USER}:users ./Manifest.toml ./Manifest.toml
 
 COPY --chown=${NB_USER}:users ./warmup.jl ./warmup.jl
 COPY --chown=${NB_USER}:users ./create_sysimage.jl ./create_sysimage.jl
+COPY --chown=${NB_USER}:users ./runpluto.sh ./runpluto.sh2
 
 ENV USER_HOME_DIR /home/${NB_USER}
 ENV JULIA_PROJECT ${USER_HOME_DIR}
