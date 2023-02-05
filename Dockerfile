@@ -26,7 +26,7 @@ ENV JULIA_PROJECT ${USER_HOME_DIR}
 ENV JULIA_DEPOT_PATH ${USER_HOME_DIR}/.julia
 WORKDIR ${USER_HOME_DIR}
 
-RUN julia -e "import Pkg; Pkg.Registry.update(); Pkg.instantiate();"
+RUN julia -e "import Pkg; Pkg.add([\"PlutoUI\", \"Pluto\", \"WordCloud\", \"HTTP\", \"ImageIO\", \"Images\"]); Pkg.precompile()"
 
 USER root
 RUN apt-get update && \
